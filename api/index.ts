@@ -1,10 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import routes from '../src/backend/routes';
 import { initializeDatabase, createAdminUser } from '../src/backend/config/database';
-
-dotenv.config();
 
 const app = express();
 
