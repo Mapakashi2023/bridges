@@ -14,6 +14,10 @@ import ArticleDetail from './pages/ArticleDetail'
 import NotFound from './pages/NotFound'
 import Login from './pages/Login'
 import AdminDashboard from './pages/AdminDashboard'
+import TeacherDashboard from './pages/TeacherDashboard'
+import StudentDashboard from './pages/StudentDashboard'
+import AICourseCreator from './pages/AICourseCreator'
+import UserManagement from './pages/UserManagement'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -48,9 +52,19 @@ function AppRoutes() {
         <Route path="/articles" element={<Layout><Articles /></Layout>} />
         <Route path="/articles/:slug" element={<Layout><ArticleDetail /></Layout>} />
 
-        {/* Admin & Auth Routes (no navbar/footer) */}
+        {/* Auth Routes */}
         <Route path="/login" element={<Login />} />
+
+        {/* Admin Routes */}
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/admin/users" element={<UserManagement />} />
+
+        {/* Teacher Routes */}
+        <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
+        <Route path="/teacher/create-course" element={<AICourseCreator />} />
+
+        {/* Student Routes */}
+        <Route path="/student/dashboard" element={<StudentDashboard />} />
 
         <Route path="*" element={<Layout><NotFound /></Layout>} />
       </Routes>
