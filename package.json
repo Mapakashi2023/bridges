@@ -9,7 +9,7 @@
     "dev:all": "concurrently \"npm run dev\" \"npm run dev:api\"",
     "build": "npm run build:frontend && npm run build:backend",
     "build:backend": "npx esbuild netlify/functions/api.ts --bundle --platform=node --target=node18 --outfile=netlify/functions/api.js --external:@neondatabase/serverless",
-    "build:frontend": "vite build",
+    "build:frontend": "npx vite build",
     "db:init": "tsx scripts/initDb.ts",
     "lint": "eslint .",
     "preview": "vite preview"
