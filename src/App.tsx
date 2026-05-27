@@ -12,6 +12,8 @@ import FAQ from './pages/FAQ'
 import Articles from './pages/Articles'
 import ArticleDetail from './pages/ArticleDetail'
 import NotFound from './pages/NotFound'
+import Login from './pages/Login'
+import AdminDashboard from './pages/AdminDashboard'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -45,6 +47,11 @@ function AppRoutes() {
         <Route path="/faq" element={<Layout><FAQ /></Layout>} />
         <Route path="/articles" element={<Layout><Articles /></Layout>} />
         <Route path="/articles/:slug" element={<Layout><ArticleDetail /></Layout>} />
+
+        {/* Admin & Auth Routes (no navbar/footer) */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+
         <Route path="*" element={<Layout><NotFound /></Layout>} />
       </Routes>
     </>
