@@ -1,4 +1,7 @@
-const API_URL = 'http://localhost:8888/api';
+// Automatically detect API URL based on environment
+const API_URL = window.location.hostname === 'localhost'
+  ? 'http://localhost:8888/api'
+  : '/api'; // On Netlify, use relative path which gets redirected to functions
 
 class ApiService {
   private getHeaders(): HeadersInit {
