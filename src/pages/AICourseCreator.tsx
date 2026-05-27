@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiCheck, FiArrowRight, FiArrowLeft, FiSparkles, FiRefreshCw } from 'react-icons/fi';
+import { FiCheck, FiArrowRight, FiArrowLeft, FiZap, FiRefreshCw } from 'react-icons/fi';
 import { geminiService } from '../services/geminiService';
 import { apiService } from '../services/apiService';
 import toast, { Toaster } from 'react-hot-toast';
@@ -64,7 +64,7 @@ export default function AICourseCreator() {
   // Step 1: Keywords & Title
   const [keywordInput, setKeywordInput] = useState('');
 
-  const handleAddKeyword = () => {
+  function handleAddKeyword() {
     if (keywordInput.trim()) {
       setCourseData(prev => ({
         ...prev,
@@ -72,9 +72,9 @@ export default function AICourseCreator() {
       }));
       setKeywordInput('');
     }
-  };
+  }
 
-  const handleGenerateTitles = async () => {
+  async function handleGenerateTitles() {
     if (!courseData.keywords || courseData.keywords.length === 0) {
       toast.error('Please add at least one keyword');
       return;
@@ -95,10 +95,10 @@ export default function AICourseCreator() {
     } finally {
       setLoading(false);
     }
-  };
+  }
 
   // Step 2: Objectives
-  const handleGenerateObjectives = async () {
+  async function handleGenerateObjectives() {
     if (!courseData.title) {
       toast.error('Please select a title first');
       return;
@@ -121,10 +121,10 @@ export default function AICourseCreator() {
     } finally {
       setLoading(false);
     }
-  };
+  }
 
   // Step 3: Course Outline
-  const handleGenerateOutline = async () {
+  async function handleGenerateOutline() {
     if (!courseData.objectives || courseData.objectives.length === 0) {
       toast.error('Please add learning objectives');
       return;
@@ -148,23 +148,23 @@ export default function AICourseCreator() {
     } finally {
       setLoading(false);
     }
-  };
+  }
 
   // Navigation
-  const handleNext = () => {
+  function handleNext() {
     if (currentStep < STEPS.length) {
       setCurrentStep(currentStep + 1);
     }
-  };
+  }
 
-  const handleBack = () => {
+  function handleBack() {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
     }
-  };
+  }
 
   // Final Course Generation
-  const handleGenerateCourse = async () => {
+  async function handleGenerateCourse() {
     setLoading(true);
     toast.loading('AI is building your complete course...', { id: 'generate' });
 
@@ -227,7 +227,7 @@ export default function AICourseCreator() {
     } finally {
       setLoading(false);
     }
-  };
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-purple-950">
@@ -238,7 +238,7 @@ export default function AICourseCreator() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center gap-4">
             <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center">
-              <FiSparkles className="text-3xl text-white" />
+              <FiZap className="text-3xl text-white" />
             </div>
             <div>
               <h1 className="text-3xl font-bold text-white">AI Course Creator</h1>
@@ -356,7 +356,7 @@ export default function AICourseCreator() {
                   disabled={loading || !courseData.keywords?.length}
                   className="w-full py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-bold text-lg flex items-center justify-center gap-3 disabled:opacity-50 mb-8"
                 >
-                  <FiSparkles /> {loading ? 'AI is thinking...' : 'Generate Course Titles with AI'}
+                  <FiZap /> {loading ? 'AI is thinking...' : 'Generate Course Titles with AI'}
                 </motion.button>
 
                 {/* Title Suggestions */}
@@ -450,7 +450,7 @@ export default function AICourseCreator() {
                   disabled={loading}
                   className="w-full py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-bold text-lg flex items-center justify-center gap-3 mb-8"
                 >
-                  <FiSparkles /> {loading ? 'AI is crafting objectives...' : 'Generate Learning Objectives with AI'}
+                  <FiZap /> {loading ? 'AI is crafting objectives...' : 'Generate Learning Objectives with AI'}
                 </motion.button>
 
                 {/* Objective Suggestions */}
@@ -534,7 +534,7 @@ export default function AICourseCreator() {
                   disabled={loading}
                   className="w-full py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-bold text-lg flex items-center justify-center gap-3 mb-8"
                 >
-                  <FiSparkles /> {loading ? 'AI is designing structure...' : 'Generate Course Outline with AI'}
+                  <FiZap /> {loading ? 'AI is designing structure...' : 'Generate Course Outline with AI'}
                 </motion.button>
 
                 {/* Outline Display */}
@@ -783,7 +783,7 @@ export default function AICourseCreator() {
                     </>
                   ) : (
                     <>
-                      <FiSparkles className="text-2xl" />
+                      <FiZap className="text-2xl" />
                       Generate Complete Course with AI
                     </>
                   )}
