@@ -12,6 +12,16 @@ dist
 dist-ssr
 *.local
 
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Backend build
+api/dist
+netlify/functions/*.js
+netlify/functions/*.js.map
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
