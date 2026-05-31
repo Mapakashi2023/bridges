@@ -37,7 +37,11 @@ export default function AdminDashboard() {
     }
 
     try {
-      const response = await fetch('http://localhost:8888/api/dashboard/admin', {
+      const API_URL = window.location.hostname === 'localhost'
+        ? 'http://localhost:8888/api'
+        : '/api';
+
+      const response = await fetch(`${API_URL}/dashboard/admin`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -202,6 +206,46 @@ export default function AdminDashboard() {
 
       {/* Main Content */}
       <main className="relative z-10 max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+        {/* Quick Actions */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8"
+        >
+          <motion.button
+            whileHover={{ scale: 1.02, y: -2 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => navigate('/teacher/create-course')}
+            className="bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-2xl p-6 shadow-2xl flex items-center gap-4 border border-white/10"
+          >
+            <div className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center text-3xl">
+              ⚡
+            </div>
+            <div className="text-left flex-1">
+              <h3 className="text-xl font-bold mb-1">AI Course Creator</h3>
+              <p className="text-blue-100 text-sm">Create courses with AI assistance</p>
+            </div>
+            <span className="text-2xl">→</span>
+          </motion.button>
+
+          <motion.button
+            whileHover={{ scale: 1.02, y: -2 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => navigate('/admin/users')}
+            className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-2xl p-6 shadow-2xl flex items-center gap-4 border border-white/10"
+          >
+            <div className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center text-3xl">
+              👥
+            </div>
+            <div className="text-left flex-1">
+              <h3 className="text-xl font-bold mb-1">User Management</h3>
+              <p className="text-emerald-100 text-sm">Manage students, teachers, and admins</p>
+            </div>
+            <span className="text-2xl">→</span>
+          </motion.button>
+        </motion.div>
+
         {/* Statistics Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <StatCard
